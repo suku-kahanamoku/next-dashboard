@@ -1,0 +1,10 @@
+{
+	"HomePage": {
+		"title": "De:vHello world!",
+		"about": "Go to the about page"
+	},
+	"AboutPage": {
+		"title": "De: About!",
+		"about": "Go to the about page"
+	}
+}
