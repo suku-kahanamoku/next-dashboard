@@ -4,7 +4,7 @@
     "description": "Home - description",
     "about": "Go to the about page"
   },
-  "AboutPage": {
+  "about": {
     "title": "About",
     "description": "About - description",
     "about": "Go to the about page"

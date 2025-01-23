@@ -1,6 +1,6 @@
 "use client";
 
-import { NextUIProvider } from "@nextui-org/react";
+import { HeroUIProvider } from "@heroui/system";
 
 export function UiProvider({
   children,
@@ -9,5 +9,5 @@ export function UiProvider({
   children: React.ReactNode;
   locale: string;
 }) {
-  return <NextUIProvider locale={locale}>{children}</NextUIProvider>;
+  return <HeroUIProvider locale={locale}>{children}</HeroUIProvider>;
 }
