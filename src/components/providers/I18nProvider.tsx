@@ -1,5 +1,4 @@
 import { AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
-import { UiProvider } from "@/components/providers/UiProvider";
 
 export function I18nProvider({
   children,
@@ -13,7 +12,7 @@ export function I18nProvider({
   return (
     <>
       <NextIntlClientProvider messages={messages}>
-        <UiProvider locale={locale}>{children}</UiProvider>
+        {children}
       </NextIntlClientProvider>
     </>
   );

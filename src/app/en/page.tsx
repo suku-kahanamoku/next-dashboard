@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 
 import { GENERATE_METADATA } from "@/utils/meta";
 import { Link } from "@/i18n/routing";
+import ButtonCmp from "@/components/ui/Button";
 
 const meta = { syscode: "home" };
 
