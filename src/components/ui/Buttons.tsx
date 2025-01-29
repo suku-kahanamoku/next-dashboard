@@ -1,4 +1,4 @@
-export default function ButtonCmp({ children }: { children?: React.ReactNode }) {
+export default function ButtonsCmp({ children }: { children?: React.ReactNode }) {
 	return (
 		<div className="flex flex-row gap-4 items-center">
 			<div className="">Default</div>
