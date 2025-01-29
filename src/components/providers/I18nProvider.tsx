@@ -1,17 +1,19 @@
-import { AbstractIntlMessages, NextIntlClientProvider } from 'next-intl';
+import { AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 
 export function I18nProvider({
-	children,
-	messages,
+  children,
+  messages,
 }: /* locale, */
 {
-	children: React.ReactNode;
-	messages: AbstractIntlMessages;
-	locale: string;
+  children: React.ReactNode;
+  messages: AbstractIntlMessages;
+  locale: string;
 }) {
-	return (
-		<>
-			<NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
-		</>
-	);
+  return (
+    <>
+      <NextIntlClientProvider messages={messages}>
+        {children}
+      </NextIntlClientProvider>
+    </>
+  );
 }
