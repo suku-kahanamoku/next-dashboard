@@ -2,7 +2,6 @@
 
 import React from "react";
 import DropdownCmp from "../Dropdown";
-import { FaCoffee, FaApple, FaBeer } from "react-icons/fa";
 
 const placements: Array<
   | "dropdown-start"
@@ -58,6 +57,11 @@ const variants: Array<"default" | "outline" | "soft" | "ghost" | "link"> = [
   "link",
 ];
 
+const listItems = [
+  { label: "Item 1", value: "item1" },
+  { label: "Item 2", value: "item2" },
+];
+
 export default function DropdownsCmp({}) {
   return (
     <div className="flex flex-wrap gap-4">
@@ -67,14 +71,8 @@ export default function DropdownsCmp({}) {
           placement={placement}
           hover
           label={`Dropdown ${placement}`}
-        >
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <a>Item 2</a>
-          </li>
-        </DropdownCmp>
+          list={listItems}
+        />
       ))}
       {colors.map((color) => (
         <DropdownCmp
@@ -83,14 +81,8 @@ export default function DropdownsCmp({}) {
           hover
           color={color}
           label={`Dropdown ${color}`}
-        >
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <a>Item 2</a>
-          </li>
-        </DropdownCmp>
+          list={listItems}
+        />
       ))}
       {sizes.map((size) => (
         <DropdownCmp
@@ -99,16 +91,8 @@ export default function DropdownsCmp({}) {
           hover
           size={size}
           label={`Dropdown Size ${size}`}
-        >
-          <ul>
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Item 2</a>
-            </li>
-          </ul>
-        </DropdownCmp>
+          list={listItems}
+        />
       ))}
       {variants.map((variant) => (
         <DropdownCmp
@@ -116,14 +100,8 @@ export default function DropdownsCmp({}) {
           placement="dropdown-start"
           hover
           label={`Dropdown ${variant}`}
-        >
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <a>Item 2</a>
-          </li>
-        </DropdownCmp>
+          list={listItems}
+        />
       ))}
     </div>
   );
