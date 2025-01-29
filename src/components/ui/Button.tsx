@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "@/i18n/routing";
+import { IconType } from "react-icons";
+import * as Icons from "react-icons/fa";
+import { FaSpinner } from "react-icons/fa";
 
 interface ButtonCmpProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   type?: "button" | "submit" | "reset";
@@ -18,11 +21,14 @@ interface ButtonCmpProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   active?: boolean;
   href?: string;
+  icon?: string | IconType;
+  appendIcon?: string | IconType;
+  loading?: boolean;
   onHover?: (
     value: boolean,
     event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>
   ) => void;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const colorClasses = {
@@ -69,6 +75,9 @@ const ButtonCmp: React.FC<ButtonCmpProps> = ({
   onClick,
   onHover,
   href,
+  icon,
+  appendIcon,
+  loading = false,
   children,
   className,
   ...rest
@@ -80,7 +89,7 @@ const ButtonCmp: React.FC<ButtonCmpProps> = ({
   const variantClass = variantClasses[variant];
   const sizeClass = sizeClasses[size];
   const modifierClass = modifier ? modifierClasses[modifier] : "";
-  const disabledClass = disabled ? "btn-disabled" : "";
+  const disabledClass = disabled || loading ? "btn-disabled" : "";
   const activeClass = active ? "btn-active" : "";
   const hoverClass = isHovered && variant !== "link" ? "hover:shadow-sm" : "";
 
@@ -102,6 +111,17 @@ const ButtonCmp: React.FC<ButtonCmpProps> = ({
     }
   };
 
+  const IconComponent = loading
+    ? () => <FaSpinner className="animate-spin mr-2" />
+    : typeof icon === "string"
+    ? (Icons as Record<string, IconType>)[icon]
+    : icon;
+
+  const AppendIconComponent =
+    typeof appendIcon === "string"
+      ? (Icons as Record<string, IconType>)[appendIcon]
+      : appendIcon;
+
   const combinedClassName = `${baseClass} ${colorClass} ${variantClass} ${sizeClass} ${modifierClass} ${disabledClass} ${activeClass} ${hoverClass} ${className}`;
 
   if (variant === "link" && href) {
@@ -113,7 +133,9 @@ const ButtonCmp: React.FC<ButtonCmpProps> = ({
         onMouseLeave={handleMouseLeave}
         {...(rest as any)}
       >
-        {children}
+        {IconComponent && <IconComponent className="mr-2" />}
+        {children && children}
+        {AppendIconComponent && <AppendIconComponent className="ml-2" />}
       </Link>
     );
   }
@@ -121,13 +143,15 @@ const ButtonCmp: React.FC<ButtonCmpProps> = ({
   return (
     <button
       className={combinedClassName}
-      disabled={disabled}
+      disabled={disabled || loading}
       onClick={onClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       {...rest}
     >
-      {children}
+      {IconComponent && <IconComponent className="mr-2" />}
+      {children && children}
+      {AppendIconComponent && <AppendIconComponent className="ml-2" />}
     </button>
   );
 };

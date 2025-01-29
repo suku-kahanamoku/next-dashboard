@@ -1,6 +1,8 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import ButtonCmp from "./Button";
+import { FaCoffee, FaApple } from "react-icons/fa";
 
 const colors: Array<
   | "neutral"
@@ -46,6 +48,17 @@ const modifiers: Array<"wide" | "block" | "square" | "circle"> = [
 ];
 
 export default function ButtonsCmp({}) {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (loading) {
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [loading]);
+
   const handleClick = (
     event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>,
     color: string,
@@ -55,6 +68,9 @@ export default function ButtonsCmp({}) {
       `Button clicked: color=${color}, variant=${variant}, event=${event}`,
       event
     );
+    if (variant === "loading") {
+      setLoading(true);
+    }
   };
 
   const handleHover = (
@@ -86,6 +102,8 @@ export default function ButtonsCmp({}) {
               }
               data-testid="button"
               className="prdel"
+              icon={variant === "link" ? FaApple : "FaBeer"}
+              appendIcon={variant === "link" ? "FaBeer" : FaApple}
             >
               {variant}
             </ButtonCmp>
@@ -101,6 +119,8 @@ export default function ButtonsCmp({}) {
             onHover={(value, event) =>
               handleHover(value, event, "default", size)
             }
+            icon="FaCoffee"
+            appendIcon="FaApple"
           >
             Size {size}
           </ButtonCmp>
@@ -115,6 +135,8 @@ export default function ButtonsCmp({}) {
             onHover={(value, event) =>
               handleHover(value, event, "default", modifier)
             }
+            icon="FaBeer"
+            appendIcon="FaCoffee"
           >
             Modifier {modifier}
           </ButtonCmp>
@@ -128,6 +150,8 @@ export default function ButtonsCmp({}) {
           onHover={(value, event) =>
             handleHover(value, event, "default", "disabled")
           }
+          icon="FaApple"
+          appendIcon="FaBeer"
         >
           Disabled
         </ButtonCmp>
@@ -137,8 +161,20 @@ export default function ButtonsCmp({}) {
           onHover={(value, event) =>
             handleHover(value, event, "default", "active")
           }
+          icon={FaCoffee}
+          appendIcon={FaApple}
         >
           Active
+        </ButtonCmp>
+        <ButtonCmp
+          loading={loading}
+          onClick={(event) => handleClick(event, "default", "loading")}
+          onHover={(value, event) =>
+            handleHover(value, event, "default", "loading")
+          }
+          icon="FaSpinner"
+        >
+          Loading
         </ButtonCmp>
       </div>
     </div>
