@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import ButtonCmp from "./Button";
+import ButtonCmp from "../Button";
 import { FaCoffee, FaApple } from "react-icons/fa";
 
 const colors: Array<
