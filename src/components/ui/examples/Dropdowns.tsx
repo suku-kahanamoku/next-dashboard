@@ -2,6 +2,7 @@
 
 import React from "react";
 import { FaApple, FaBeer } from "react-icons/fa";
+import Flag from "react-world-flags";
 
 import DropdownCmp, { IDropdownItem, DropdownPlacement } from "../Dropdown";
 import { ButtonColor, ButtonSize } from "../Button";
@@ -40,6 +41,8 @@ const listItems: IDropdownItem[] = [
     onClick: () => alert("Item 1"),
   },
   { label: "Item 2", value: "item2", icon: FaBeer, href: "/about" },
+  { label: "English", value: "", icon: () => <Flag code="GB" width={24} /> },
+  { label: "Czech", value: "cs", icon: () => <Flag code="CZ" width={24} /> },
 ];
 
 export default function DropdownsCmp({}) {
