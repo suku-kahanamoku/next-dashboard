@@ -5,6 +5,7 @@ import { Link } from "@/i18n/routing";
 import ButtonsCmp from "@/components/ui/examples/Buttons";
 import DropdownsCmp from "@/components/ui/examples/Dropdowns";
 import DialogsCmp from "@/components/ui/examples/Dialogs";
+import ThemeCmp from "@/components/ui/Theme";
 
 const meta = { syscode: "home" };
 
@@ -17,10 +18,11 @@ export default function HomePage() {
 
   return (
     <div>
+      <ThemeCmp />
       <h1>{t("title")}</h1>
       <Link href="/about">{t("about")}</Link>
       {/* <ButtonsCmp /> */}
-      <DropdownsCmp />
+      {/* <DropdownsCmp /> */}
       <DialogsCmp />
     </div>
   );
