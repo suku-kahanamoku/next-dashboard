@@ -1,18 +1,12 @@
 "use client";
 
 import React from "react";
-import DropdownCmp, { IDropdownItem } from "../Dropdown";
 import { FaApple, FaBeer } from "react-icons/fa";
 
-const placements: Array<
-  | "dropdown-start"
-  | "dropdown-center"
-  | "dropdown-end"
-  | "dropdown-top"
-  | "dropdown-bottom"
-  | "dropdown-left"
-  | "dropdown-right"
-> = [
+import DropdownCmp, { IDropdownItem, DropdownPlacement } from "../Dropdown";
+import { ButtonColor, ButtonSize } from "../Button";
+
+const placements: DropdownPlacement[] = [
   "dropdown-start",
   "dropdown-center",
   "dropdown-end",
@@ -22,16 +16,7 @@ const placements: Array<
   "dropdown-right",
 ];
 
-const colors: Array<
-  | "neutral"
-  | "primary"
-  | "secondary"
-  | "accent"
-  | "info"
-  | "success"
-  | "warning"
-  | "error"
-> = [
+const colors: ButtonColor[] = [
   "neutral",
   "primary",
   "secondary",
@@ -42,21 +27,9 @@ const colors: Array<
   "error",
 ];
 
-const sizes: Array<"xs" | "sm" | "md" | "lg" | "xl"> = [
-  "xs",
-  "sm",
-  "md",
-  "lg",
-  "xl",
-];
+const sizes: ButtonSize[] = ["xs", "sm", "md", "lg", "xl"];
 
-const variants: Array<"default" | "outline" | "soft" | "ghost" | "link"> = [
-  "default",
-  "outline",
-  "soft",
-  "ghost",
-  "link",
-];
+const variants: string[] = ["variant1", "variant2", "variant3"]; // Add appropriate variants here
 
 const listItems: IDropdownItem[] = [
   {
@@ -71,7 +44,7 @@ const listItems: IDropdownItem[] = [
 
 export default function DropdownsCmp({}) {
   return (
-    <>
+    <div className="flex flex-col gap-8">
       <div className="flex flex-wrap gap-4">
         {placements.map((placement) => (
           <DropdownCmp
@@ -83,6 +56,7 @@ export default function DropdownsCmp({}) {
           />
         ))}
       </div>
+
       <div className="flex flex-wrap gap-4">
         {colors.map((color) => (
           <DropdownCmp
@@ -95,6 +69,7 @@ export default function DropdownsCmp({}) {
           />
         ))}
       </div>
+
       <div className="flex flex-wrap gap-4">
         {sizes.map((size) => (
           <DropdownCmp
@@ -107,6 +82,7 @@ export default function DropdownsCmp({}) {
           />
         ))}
       </div>
+
       <div className="flex flex-wrap gap-4">
         {variants.map((variant) => (
           <DropdownCmp
@@ -118,6 +94,6 @@ export default function DropdownsCmp({}) {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 }

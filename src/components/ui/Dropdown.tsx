@@ -1,7 +1,7 @@
 import React from "react";
 import { IconType } from "react-icons";
 
-import ButtonCmp from "./Button";
+import ButtonCmp, { ButtonColor, ButtonVariant, ButtonSize } from "./Button";
 import { Link } from "@/i18n/routing";
 
 export interface IDropdownItem {
@@ -14,28 +14,23 @@ export interface IDropdownItem {
   onClick?: () => void;
 }
 
+export type DropdownPlacement =
+  | "dropdown-start"
+  | "dropdown-center"
+  | "dropdown-end"
+  | "dropdown-top"
+  | "dropdown-bottom"
+  | "dropdown-left"
+  | "dropdown-right";
+
 interface DropdownCmpProps extends React.HTMLAttributes<HTMLDivElement> {
-  placement?:
-    | "dropdown-start"
-    | "dropdown-center"
-    | "dropdown-end"
-    | "dropdown-top"
-    | "dropdown-bottom"
-    | "dropdown-left"
-    | "dropdown-right";
+  placement?: DropdownPlacement;
   hover?: boolean;
   open?: boolean;
   label: string | React.ReactNode;
-  color?:
-    | "neutral"
-    | "primary"
-    | "secondary"
-    | "accent"
-    | "info"
-    | "success"
-    | "warning"
-    | "error";
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  color?: ButtonColor;
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   icon?: string | IconType;
   appendIcon?: string | IconType;
   loading?: boolean;
@@ -48,8 +43,9 @@ const DropdownCmp: React.FC<DropdownCmpProps> = ({
   hover = false,
   open = false,
   label,
-  color = "primary",
-  size = "md",
+  color,
+  variant,
+  size,
   icon,
   appendIcon,
   loading = false,
@@ -77,6 +73,7 @@ const DropdownCmp: React.FC<DropdownCmpProps> = ({
         {typeof label === "string" ? (
           <ButtonCmp
             color={color}
+            variant={variant}
             size={size}
             icon={icon}
             appendIcon={appendIcon}

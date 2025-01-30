@@ -5,20 +5,28 @@ import { FaSpinner } from "react-icons/fa";
 
 import { Link } from "@/i18n/routing";
 
+export type ButtonColor =
+  | "neutral"
+  | "primary"
+  | "secondary"
+  | "accent"
+  | "info"
+  | "success"
+  | "warning"
+  | "error";
+
+export type ButtonVariant = "default" | "outline" | "soft" | "ghost" | "link";
+
+export type ButtonSize = "xs" | "sm" | "md" | "lg" | "xl";
+
+export type ButtonModifier = "wide" | "block" | "square" | "circle";
+
 interface ButtonCmpProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   type?: "button" | "submit" | "reset";
-  color?:
-    | "neutral"
-    | "primary"
-    | "secondary"
-    | "accent"
-    | "info"
-    | "success"
-    | "warning"
-    | "error";
-  variant?: "default" | "outline" | "soft" | "ghost" | "link";
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
-  modifier?: "wide" | "block" | "square" | "circle";
+  color?: ButtonColor;
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  modifier?: ButtonModifier;
   disabled?: boolean;
   active?: boolean;
   href?: string;
@@ -113,7 +121,7 @@ const ButtonCmp: React.FC<ButtonCmpProps> = ({
   };
 
   const IconComponent = loading
-    ? () => <FaSpinner className="animate-spin mr-2" />
+    ? FaSpinner
     : typeof icon === "string"
     ? (Icons as Record<string, IconType>)[icon]
     : icon;
@@ -135,7 +143,7 @@ const ButtonCmp: React.FC<ButtonCmpProps> = ({
         {...(rest as any)}
       >
         {IconComponent && <IconComponent className="mr-2" />}
-        {children && children}
+        {children}
         {AppendIconComponent && <AppendIconComponent className="ml-2" />}
       </Link>
     );
@@ -151,7 +159,7 @@ const ButtonCmp: React.FC<ButtonCmpProps> = ({
       {...rest}
     >
       {IconComponent && <IconComponent className="mr-2" />}
-      {children && children}
+      {children}
       {AppendIconComponent && <AppendIconComponent className="ml-2" />}
     </button>
   );

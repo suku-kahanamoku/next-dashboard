@@ -1,19 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import ButtonCmp from "../Button";
+import ButtonCmp, {
+  ButtonColor,
+  ButtonVariant,
+  ButtonSize,
+  ButtonModifier,
+} from "../Button";
 import { FaCoffee, FaApple } from "react-icons/fa";
 
-const colors: Array<
-  | "neutral"
-  | "primary"
-  | "secondary"
-  | "accent"
-  | "info"
-  | "success"
-  | "warning"
-  | "error"
-> = [
+const colors: ButtonColor[] = [
   "neutral",
   "primary",
   "secondary",
@@ -24,7 +20,7 @@ const colors: Array<
   "error",
 ];
 
-const variants: Array<"default" | "outline" | "soft" | "ghost" | "link"> = [
+const variants: ButtonVariant[] = [
   "default",
   "outline",
   "soft",
@@ -32,20 +28,9 @@ const variants: Array<"default" | "outline" | "soft" | "ghost" | "link"> = [
   "link",
 ];
 
-const sizes: Array<"xs" | "sm" | "md" | "lg" | "xl"> = [
-  "xs",
-  "sm",
-  "md",
-  "lg",
-  "xl",
-];
+const sizes: ButtonSize[] = ["xs", "sm", "md", "lg", "xl"];
 
-const modifiers: Array<"wide" | "block" | "square" | "circle"> = [
-  "wide",
-  "block",
-  "square",
-  "circle",
-];
+const modifiers: ButtonModifier[] = ["wide", "block", "square", "circle"];
 
 export default function ButtonsCmp({}) {
   const [loading, setLoading] = useState(false);
@@ -110,6 +95,7 @@ export default function ButtonsCmp({}) {
           ))}
         </div>
       ))}
+
       {sizes.map((size) => (
         <div key={size} className="flex flex-row gap-4 items-center">
           <div className="">{size}</div>
@@ -126,6 +112,7 @@ export default function ButtonsCmp({}) {
           </ButtonCmp>
         </div>
       ))}
+
       {modifiers.map((modifier) => (
         <div key={modifier} className="flex flex-row gap-4 items-center">
           <div className="">{modifier}</div>
@@ -142,6 +129,7 @@ export default function ButtonsCmp({}) {
           </ButtonCmp>
         </div>
       ))}
+
       <div className="flex flex-row gap-4 items-center">
         <div className="">States</div>
         <ButtonCmp
