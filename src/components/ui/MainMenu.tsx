@@ -5,8 +5,12 @@ import logo from "@/assets/images/logo.svg";
 import { Link } from "@/i18n/routing";
 import ThemeCmp from "./Theme";
 import LangCmp from "./Lang";
+import { getAllMenus } from "@/utils/menus";
 
 const MainMenuCmp: React.FC = () => {
+  const menus = getAllMenus();
+  console.dir(menus);
+
   return (
     <div className="navbar justify-between items-center py-2 px-4 shadow-md">
       <Link href="/">
@@ -15,9 +19,11 @@ const MainMenuCmp: React.FC = () => {
 
       <nav className="flex-none">
         <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Link</a>
-          </li>
+          {menus.map((menu, index) => (
+            <li key={index}>
+              <Link href={menu.href}>{menu.label}</Link>
+            </li>
+          ))}
           <li>
             <details>
               <summary>Parent</summary>
