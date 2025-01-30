@@ -63,6 +63,7 @@ const DialogCmp: React.FC<DialogCmpProps> = ({
           color={color}
           variant={variant}
           size={size}
+          icon={icon}
           appendIcon={appendIcon}
           loading={loading}
           disabled={disabled}

@@ -1,4 +1,8 @@
 {
+  "lang": {
+    "en": "Angličtina",
+    "cs": "Čeština"
+  },
   "home": {
     "title": "Domů",
     "description": "Domů - description",

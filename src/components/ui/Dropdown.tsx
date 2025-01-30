@@ -1,17 +1,18 @@
 import React from "react";
 import { IconType } from "react-icons";
+import clsx from "clsx";
 
 import ButtonCmp, { ButtonColor, ButtonVariant, ButtonSize } from "./Button";
 import { Link } from "@/i18n/routing";
 
 export interface IDropdownItem {
-  label: string;
   value: string;
+  label?: string;
   href?: string;
   icon?: string | IconType;
   disabled?: boolean;
   className?: string;
-  onClick?: () => void;
+  onClick?: (item: IDropdownItem) => void;
 }
 
 export type DropdownPlacement =
@@ -48,7 +49,7 @@ const DropdownCmp: React.FC<DropdownCmpProps> = ({
   size,
   icon,
   appendIcon,
-  loading = false,
+  loading,
   list,
   children,
   className = "",
@@ -62,7 +63,7 @@ const DropdownCmp: React.FC<DropdownCmpProps> = ({
 
   const handleSelect = (item: IDropdownItem) => {
     if (item.onClick) {
-      item.onClick();
+      item.onClick(item);
     }
   };
 
@@ -101,13 +102,21 @@ const DropdownCmp: React.FC<DropdownCmpProps> = ({
                 {item.href ? (
                   <Link
                     href={item.href}
-                    className={item.disabled ? "disabled" : ""}
+                    className={clsx(
+                      item.className,
+                      item.disabled && "disabled"
+                    )}
                   >
                     {item.icon && <item.icon className="mr-2" />}
                     {item.label}
                   </Link>
                 ) : (
-                  <span className={item.disabled ? "disabled" : ""}>
+                  <span
+                    className={clsx(
+                      item.className,
+                      item.disabled && "disabled"
+                    )}
+                  >
                     {item.icon && <item.icon className="mr-2" />}
                     {item.label}
                   </span>
