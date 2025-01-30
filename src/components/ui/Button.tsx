@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "@/i18n/routing";
 import { IconType } from "react-icons";
 import * as Icons from "react-icons/fa";
 import { FaSpinner } from "react-icons/fa";
+
+import { Link } from "@/i18n/routing";
 
 interface ButtonCmpProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   type?: "button" | "submit" | "reset";
@@ -79,7 +80,7 @@ const ButtonCmp: React.FC<ButtonCmpProps> = ({
   appendIcon,
   loading = false,
   children,
-  className,
+  className = "",
   ...rest
 }) => {
   const [isHovered, setIsHovered] = useState(false);

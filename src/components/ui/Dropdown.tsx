@@ -1,6 +1,18 @@
-import React, { useState } from "react";
-import ButtonCmp from "./Button";
+import React from "react";
 import { IconType } from "react-icons";
+
+import ButtonCmp from "./Button";
+import { Link } from "@/i18n/routing";
+
+export interface IDropdownItem {
+  label: string;
+  value: string;
+  href?: string;
+  icon?: string | IconType;
+  disabled?: boolean;
+  className?: string;
+  onClick?: () => void;
+}
 
 interface DropdownCmpProps extends React.HTMLAttributes<HTMLDivElement> {
   placement?:
@@ -27,7 +39,7 @@ interface DropdownCmpProps extends React.HTMLAttributes<HTMLDivElement> {
   icon?: string | IconType;
   appendIcon?: string | IconType;
   loading?: boolean;
-  list?: { label: string; value: string }[];
+  list?: IDropdownItem[];
   children?: React.ReactNode;
 }
 
@@ -43,33 +55,26 @@ const DropdownCmp: React.FC<DropdownCmpProps> = ({
   loading = false,
   list,
   children,
-  className,
+  className = "",
   ...rest
 }) => {
-  const [selectedLabel, setSelectedLabel] = useState<string | React.ReactNode>(
-    label
-  );
-  const [isOpen, setIsOpen] = useState(open);
-
   const baseClass = "dropdown";
   const hoverClass = hover ? "dropdown-hover" : "";
-  const openClass = isOpen ? "dropdown-close" : "";
+  const openClass = open ? "dropdown-open" : "dropdown-close";
 
   const combinedClassName = `${baseClass} ${placement} ${hoverClass} ${openClass} ${className}`;
 
-  const handleSelect = (label: string) => {
-    setSelectedLabel(label);
-    setIsOpen(false);
-  };
-
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
+  const handleSelect = (item: IDropdownItem) => {
+    if (item.onClick) {
+      item.onClick();
+    }
   };
 
   return (
     <div className={combinedClassName} {...rest}>
-      <div tabIndex={0} onClick={handleToggle}>
-        {typeof selectedLabel === "string" ? (
+      {/* tlacitko, kterym se otevre dropdown */}
+      <div tabIndex={0}>
+        {typeof label === "string" ? (
           <ButtonCmp
             color={color}
             size={size}
@@ -77,20 +82,39 @@ const DropdownCmp: React.FC<DropdownCmpProps> = ({
             appendIcon={appendIcon}
             loading={loading}
           >
-            {selectedLabel}
+            {label}
           </ButtonCmp>
         ) : (
-          selectedLabel
+          label
         )}
       </div>
+
+      {/* seznam polozek dropdownu */}
       <ul
         tabIndex={0}
         className="dropdown-content menu bg-base-100 rounded-box z-1 p-2 shadow-sm"
       >
         {list
           ? list.map((item) => (
-              <li key={item.value} onClick={() => handleSelect(item.label)}>
-                <span>{item.label}</span>
+              <li
+                key={item.value}
+                className={item.className}
+                onClick={() => !item.disabled && handleSelect(item)}
+              >
+                {item.href ? (
+                  <Link
+                    href={item.href}
+                    className={item.disabled ? "disabled" : ""}
+                  >
+                    {item.icon && <item.icon className="mr-2" />}
+                    {item.label}
+                  </Link>
+                ) : (
+                  <span className={item.disabled ? "disabled" : ""}>
+                    {item.icon && <item.icon className="mr-2" />}
+                    {item.label}
+                  </span>
+                )}
               </li>
             ))
           : children}

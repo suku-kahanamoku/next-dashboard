@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import DropdownCmp from "../Dropdown";
+import DropdownCmp, { IDropdownItem } from "../Dropdown";
+import { FaApple, FaBeer } from "react-icons/fa";
 
 const placements: Array<
   | "dropdown-start"
@@ -57,52 +58,66 @@ const variants: Array<"default" | "outline" | "soft" | "ghost" | "link"> = [
   "link",
 ];
 
-const listItems = [
-  { label: "Item 1", value: "item1" },
-  { label: "Item 2", value: "item2" },
+const listItems: IDropdownItem[] = [
+  {
+    label: "Item 1",
+    value: "item1",
+    icon: FaApple,
+    disabled: true,
+    onClick: () => alert("Item 1"),
+  },
+  { label: "Item 2", value: "item2", icon: FaBeer, href: "/about" },
 ];
 
 export default function DropdownsCmp({}) {
   return (
-    <div className="flex flex-wrap gap-4">
-      {placements.map((placement) => (
-        <DropdownCmp
-          key={placement}
-          placement={placement}
-          hover
-          label={`Dropdown ${placement}`}
-          list={listItems}
-        />
-      ))}
-      {colors.map((color) => (
-        <DropdownCmp
-          key={color}
-          placement="dropdown-start"
-          hover
-          color={color}
-          label={`Dropdown ${color}`}
-          list={listItems}
-        />
-      ))}
-      {sizes.map((size) => (
-        <DropdownCmp
-          key={size}
-          placement="dropdown-start"
-          hover
-          size={size}
-          label={`Dropdown Size ${size}`}
-          list={listItems}
-        />
-      ))}
-      {variants.map((variant) => (
-        <DropdownCmp
-          key={variant}
-          placement="dropdown-start"
-          hover
-          label={`Dropdown ${variant}`}
-          list={listItems}
-        />
-      ))}
-    </div>
+    <>
+      <div className="flex flex-wrap gap-4">
+        {placements.map((placement) => (
+          <DropdownCmp
+            key={placement}
+            placement={placement}
+            hover
+            label={`Dropdown ${placement}`}
+            list={listItems}
+          />
+        ))}
+      </div>
+      <div className="flex flex-wrap gap-4">
+        {colors.map((color) => (
+          <DropdownCmp
+            key={color}
+            placement="dropdown-start"
+            hover
+            color={color}
+            label={`Dropdown ${color}`}
+            list={listItems}
+          />
+        ))}
+      </div>
+      <div className="flex flex-wrap gap-4">
+        {sizes.map((size) => (
+          <DropdownCmp
+            key={size}
+            placement="dropdown-start"
+            hover
+            size={size}
+            label={`Dropdown Size ${size}`}
+            list={listItems}
+          />
+        ))}
+      </div>
+      <div className="flex flex-wrap gap-4">
+        {variants.map((variant) => (
+          <DropdownCmp
+            key={variant}
+            placement="dropdown-start"
+            hover
+            label={`Dropdown ${variant}`}
+            list={listItems}
+          />
+        ))}
+      </div>
+    </>
   );
 }
