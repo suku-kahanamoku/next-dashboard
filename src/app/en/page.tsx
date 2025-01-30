@@ -4,6 +4,7 @@ import { GENERATE_METADATA } from "@/utils/meta";
 import { Link } from "@/i18n/routing";
 import ButtonsCmp from "@/components/ui/examples/Buttons";
 import DropdownsCmp from "@/components/ui/examples/Dropdowns";
+import DialogsCmp from "@/components/ui/examples/Dialogs";
 
 const meta = { syscode: "home" };
 
@@ -20,6 +21,7 @@ export default function HomePage() {
       <Link href="/about">{t("about")}</Link>
       {/* <ButtonsCmp /> */}
       <DropdownsCmp />
+      <DialogsCmp />
     </div>
   );
 }

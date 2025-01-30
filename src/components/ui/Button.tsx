@@ -140,9 +140,13 @@ const ButtonCmp: React.FC<ButtonCmpProps> = ({
         className={combinedClassName}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        {...(rest as any)}
+        {...(rest as Record<string, any>)}
       >
-        {IconComponent && <IconComponent className="mr-2" />}
+        {IconComponent && (
+          <IconComponent
+            className={children || AppendIconComponent ? "mr-2" : undefined}
+          />
+        )}
         {children}
         {AppendIconComponent && <AppendIconComponent className="ml-2" />}
       </Link>
@@ -158,9 +162,19 @@ const ButtonCmp: React.FC<ButtonCmpProps> = ({
       onMouseLeave={handleMouseLeave}
       {...rest}
     >
-      {IconComponent && <IconComponent className="mr-2" />}
+      {IconComponent && (
+        <IconComponent
+          className={children || AppendIconComponent ? "mr-2" : undefined}
+        />
+      )}
+
       {children}
-      {AppendIconComponent && <AppendIconComponent className="ml-2" />}
+
+      {AppendIconComponent && (
+        <AppendIconComponent
+          className={children || IconComponent ? "ml-2" : undefined}
+        />
+      )}
     </button>
   );
 };
