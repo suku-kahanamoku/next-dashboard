@@ -6,6 +6,7 @@ import ButtonsCmp from "@/components/ui/examples/Buttons";
 import DropdownsCmp from "@/components/ui/examples/Dropdowns";
 import DialogsCmp from "@/components/ui/examples/Dialogs";
 import ThemeCmp from "@/components/ui/Theme";
+import MainMenuCmp from "@/components/ui/MainMenu";
 
 const meta = { syscode: "home" };
 
@@ -18,12 +19,13 @@ export default function HomePage() {
 
   return (
     <div>
+      <MainMenuCmp />
       <ThemeCmp />
       <h1>{t("title")}</h1>
       <Link href="/about">{t("about")}</Link>
-      {/* <ButtonsCmp /> */}
+      {<ButtonsCmp />}
       {/* <DropdownsCmp /> */}
-      <DialogsCmp />
+      {/* <DialogsCmp /> */}
     </div>
   );
 }
