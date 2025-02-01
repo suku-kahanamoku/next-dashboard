@@ -12,5 +12,10 @@
     "title": "O nás",
     "description": "O nás - description",
     "about": "Přejít na stránku o nás"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "description": "Kontakt - description",
+    "about": "Přejít na stránku kontakt"
   }
 }

@@ -1,15 +1,17 @@
 import React from "react";
 import Image from "next/image";
+import { useLocale } from "next-intl";
+import { getLocale } from "next-intl/server";
 
+import useRoutes from "@/composables/useRoutes";
 import logo from "@/assets/images/logo.svg";
 import { Link } from "@/i18n/routing";
 import ThemeCmp from "./Theme";
 import LangCmp from "./Lang";
-import { getAllMenus } from "@/utils/menus";
 
-const MainMenuCmp: React.FC = () => {
-  const menus = getAllMenus();
-  console.dir(menus);
+const MainMenuCmp: React.FC = async () => {
+  const locale = useLocale();
+  const { routes } = useRoutes(locale);
 
   return (
     <div className="navbar justify-between items-center py-2 px-4 shadow-md">
@@ -19,9 +21,9 @@ const MainMenuCmp: React.FC = () => {
 
       <nav className="flex-none">
         <ul className="menu menu-horizontal px-1">
-          {menus.map((menu, index) => (
+          {routes.resolved?.children?.map((menu, index) => (
             <li key={index}>
-              <Link href={menu.href}>{menu.label}</Link>
+              <Link href={menu.href}>{menu.name}</Link>
             </li>
           ))}
           <li>

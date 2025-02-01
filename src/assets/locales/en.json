@@ -12,5 +12,10 @@
     "title": "About",
     "description": "About - description",
     "about": "Go to the about page"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Contact - description",
+    "about": "Go to the contact page"
   }
 }

@@ -22,8 +22,8 @@ const LangCmp: React.FC = () => {
 
   const langs = langItems.map((item) => ({
     value: item.value,
-    className: "w-6 p-0",
-    icon: () => <Flag code={item.label} width={24} height={16} />,
+    className: "w-8 p-0",
+    icon: () => <Flag code={item.label} width={30} height={30} />,
     onClick: onSelectChange,
   }));
 
@@ -50,7 +50,7 @@ const LangCmp: React.FC = () => {
   return (
     <DropdownCmp
       placement="dropdown-center"
-      label={<Flag code={currentLabel} width={24} height={24} />}
+      label={<Flag code={currentLabel} width={30} height={30} />}
       list={filteredLangItems}
       loading={isPending}
       className="w-full cursor-pointer"
